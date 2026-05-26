@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Marketing — Pricing Packages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-50:  #E1F5EE;
+    --green-100: #9FE1CB;
+    --green-400: #1D9E75;
+    --green-600: #0F6E56;
+    --green-800: #085041;
+    --text-dark: #1a1a1a;
+    --text-mid:  #555;
+    --text-muted:#888;
+    --border:    rgba(0,0,0,0.1);
+    --bg-soft:   #F7F9F8;
+    --white:     #ffffff;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-soft);
+    color: var(--text-dark);
+    min-height: 100vh;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .page { max-width: 880px; margin: 0 auto; }
+
+  /* Brand strip */
+  .brand-strip {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; margin-bottom: 2.5rem; padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green-400); }
+  .brand-name { font-size: 28px; font-weight: 600; color: var(--text-dark); letter-spacing: 0.04em; }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 3rem; }
+  .eyebrow {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--green-600); background: var(--green-50);
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 1rem;
+  }
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(26px, 4.5vw, 40px); font-weight: 400;
+    color: var(--text-dark); line-height: 1.15; margin-bottom: 0.75rem;
+  }
+  .header h1 em { font-style: italic; color: var(--green-400); }
+  .header p { font-size: 15px; color: var(--text-mid); max-width: 480px; margin: 0 auto; line-height: 1.6; }
+
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 2.5rem; }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+
+  /* Card */
+  .card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.75rem 1.4rem 1.4rem;
+    display: flex; flex-direction: column; position: relative;
+  }
+  .card.featured { border: 2px solid var(--green-400); }
+
+  .badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--green-400); color: #fff; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 14px; border-radius: 20px; white-space: nowrap;
+  }
+
+  /* Tier icon */
+  .tier-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.1rem;
+  }
+  .tier-icon svg { width: 24px; height: 24px; }
+  .icon-essential { background: var(--green-50); }
+  .icon-elevate   { background: var(--green-50); }
+  .icon-elite     { background: var(--green-400); }
+
+  /* Text */
+  .tier-number { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px; }
+  .tier-name { font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 400; color: var(--text-dark); margin-bottom: 0.85rem; }
+
+  .price { display: flex; align-items: baseline; gap: 2px; margin-bottom: 0.25rem; }
+  .price-dollar { font-size: 15px; font-weight: 500; color: var(--text-mid); }
+  .price-amount { font-size: 36px; font-weight: 600; color: var(--text-dark); line-height: 1; }
+  .price-period { font-size: 13px; color: var(--text-muted); margin-left: 1px; }
+
+  .tagline { font-size: 12.5px; color: var(--text-mid); line-height: 1.55; margin-bottom: 1.25rem; min-height: 40px; }
+  .divider { height: 1px; background: var(--border); margin-bottom: 1rem; }
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+
+  /* Platforms */
+  .platforms { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1rem; }
+  .pill { font-size: 10px; font-weight: 500; padding: 3px 9px; border-radius: 20px; background: var(--bg-soft); color: var(--text-mid); border: 1px solid var(--border); }
+
+  /* Features */
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 1.25rem; }
+  .feature-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text-dark); line-height: 1.45; }
+  .chk { flex-shrink: 0; width: 17px; height: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .chk svg { width: 9px; height: 9px; }
+  .chk-e  { background: var(--green-50);  }
+  .chk-ev { background: var(--green-50);  }
+  .chk-el { background: var(--green-400); }
+
+  /* CTA */
+  .cta {
+    display: block; text-align: center; padding: 11px; border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none;
+    margin-top: auto; transition: opacity 0.12s, transform 0.1s;
+  }
+  .cta:hover  { opacity: 0.85; transform: translateY(-1px); }
+  .cta-e  { background: var(--bg-soft); color: var(--text-dark); border: 1px solid var(--border); }
+  .cta-ev { background: var(--green-800); color: var(--green-100); border: none; }
+  .cta-el { background: var(--green-400); color: #fff; border: none; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.5rem; }
+  @media (max-width: 480px) { .stats { grid-template-columns: 1fr; } }
+  .stat { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem; text-align: center; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--green-400); line-height: 1; margin-bottom: 5px; }
+  .stat-lbl { font-size: 11.5px; color: var(--text-mid); line-height: 1.4; }
+
+  .note { text-align: center; font-size: 11px; color: var(--text-muted); line-height: 1.7; }
+  .note a { color: var(--green-600); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="brand-strip">
+    <div class="brand-dot"></div>
+    <span class="brand-name">EDDELACT</span>
+  </div>
+
+  <div class="header">
+    <span class="eyebrow">Social Media Marketing &amp; Content Creation</span>
+    <h1>Packages built to <em>grow</em> your brand</h1>
+    <p>All plans include onboarding, a dedicated strategist, and monthly analytics reporting.</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- ── Essential ── -->
+    <div class="card">
+      <div class="tier-icon icon-essential">
+        <!-- Sprout / seedling icon -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 22V12" stroke="#0F6E56" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M12 12C12 12 7 11 5 7C5 7 10 4 14 7C16 8.5 16 11 12 12Z" fill="#1D9E75" stroke="#0F6E56" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M12 16C12 16 15 15 17 12C17 12 14 10 11 12C10 13 10.5 15 12 16Z" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="tier-number">Package 01</p>
+      <p class="tier-name">Essential</p>
+      <div class="price">
+        <span class="price-dollar">$</span>
+        <span class="price-amount">1,585</span>
+        <span class="price-period">/mo</span>
+      </div>
+      <p class="tagline">Perfect for new brands ready to build a consistent social presence.</p>
+      <div class="divider"></div>
+      <p class="section-label">Platforms</p>
+      <div class="platforms">
+        <span class="pill">Instagram</span>
+        <span class="pill">Facebook</span>
+      </div>
+      <p class="section-label">What's included</p>
+      <ul class="feature-list">
+        <li>
+          <span class="chk chk-e">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>8 custom posts & stories / month
+        </li>
+        <li>
+          <span class="chk chk-e">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Basic caption copywriting
+        </li>
+        <li>
+          <span class="chk chk-e">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Branded static graphics
+        </li>
+        <li>
+          <span class="chk chk-e">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Hashtag research &amp; strategy
+        </li>
+        <li>
+          <span class="chk chk-e">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Monthly PDF report
+        </li>
+        <li>
+          <span class="chk chk-e">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>1 revision rounds
+        </li>
+      </ul>
+      <a class="cta cta-e" href="mailto:guru@eddelact.com.com?subject=Essential Package Inquiry">Get started</a>
+    </div>
+
+    <!-- ── Elevate ── -->
+    <div class="card featured">
+      <span class="badge">Most popular</span>
+      <div class="tier-icon icon-elevate">
+        <!-- Trending up / rocket icon -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13 3C13 3 18 3.5 21 6.5C21 6.5 21.5 11.5 19 15L15 11L13 3Z" fill="#1D9E75" stroke="#0F6E56" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M9 13L13 17C10.5 19 5.5 20 5.5 20C5.5 20 6 14.5 9 13Z" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M15 11L13 17L9 13L15 11Z" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.4" stroke-linejoin="round"/>
+          <circle cx="16" cy="8" r="1.5" fill="#0F6E56"/>
+        </svg>
+      </div>
+      <p class="tier-number">Package 02</p>
+      <p class="tier-name">Elevate</p>
+      <div class="price">
+        <span class="price-dollar">$</span>
+        <span class="price-amount">2,580</span>
+        <span class="price-period">/mo</span>
+      </div>
+      <p class="tagline">For growing brands that want real engagement, reach, and results.</p>
+      <div class="divider"></div>
+      <p class="section-label">Platforms</p>
+      <div class="platforms">
+        <span class="pill">Instagram</span>
+        <span class="pill">Facebook</span>
+        <span class="pill">TikTok</span>
+      </div>
+      <p class="section-label">Everything in Essential, plus</p>
+      <ul class="feature-list">
+        <li>
+          <span class="chk chk-ev">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>12 posts & stories + 3 Reels / month
+        </li>
+        <li>
+          <span class="chk chk-ev">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Story sequences (Thrice weekly)
+        </li>
+        <li>
+          <span class="chk chk-ev">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Community management (5h/wk)
+        </li>
+        <li>
+          <span class="chk chk-ev">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Weekly strategy call
+        </li>
+        <li>
+          <span class="chk chk-e">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>2 revision rounds
+        </li>
+      </ul>
+      <a class="cta cta-ev" href="mailto:guru@eddelact.com.com?subject=Elevate Package Inquiry">Get started</a>
+    </div>
+
+    <!-- ── Elite ── -->
+    <div class="card">
+      <div class="tier-icon icon-elite">
+        <!-- Crown icon -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 18H21V20H3V18Z" fill="white" opacity="0.6"/>
+          <path d="M3 18L5 10L9 14L12 7L15 14L19 10L21 18H3Z" fill="white" stroke="white" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="12" cy="6" r="1.5" fill="white"/>
+          <circle cx="3.5" cy="10.5" r="1.2" fill="white"/>
+          <circle cx="20.5" cy="10.5" r="1.2" fill="white"/>
+        </svg>
+      </div>
+      <p class="tier-number">Package 03</p>
+      <p class="tier-name">Elite</p>
+      <div class="price">
+        <span class="price-dollar">$</span>
+        <span class="price-amount">3,580</span>
+        <span class="price-period">/mo</span>
+      </div>
+      <p class="tagline">Full-service for brands that demand content excellence at scale.</p>
+      <div class="divider"></div>
+      <p class="section-label">Platforms</p>
+      <div class="platforms">
+        <span class="pill">Instagram</span>
+        <span class="pill">Facebook</span>
+        <span class="pill">TikTok</span>
+        <span class="pill">LinkedIn</span>
+        <span class="pill">YouTube</span>
+        <span class="pill">Pinterest</span>
+      </div>
+      <p class="section-label">Everything in Elevate, plus</p>
+      <ul class="feature-list">
+        <li>
+          <span class="chk chk-el">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>16 posts + 12 Reels / month
+        </li>
+        <li>
+          <span class="chk chk-el">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Story sequences (Weekly)
+        </li>
+        <li>
+          <span class="chk chk-el">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Long-form video editing (2/mo)
+        </li>
+        <li>
+          <span class="chk chk-el">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Influencer outreach &amp; management
+        </li>
+        <li>
+          <span class="chk chk-el">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Full paid ad management
+        </li>
+        <li>
+          <span class="chk chk-el">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Weekly strategy + reporting
+        </li>
+        <li>
+          <span class="chk chk-el">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>Competitor analysis
+        </li>
+        <li>
+          <span class="chk chk-el">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>3 revision rounds
+        </li>
+        
+      </ul>
+      <a class="cta cta-el" href="mailto:guru@eddelact.com.com?subject=Elite Package Inquiry">Get started</a>
+    </div>
+
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <p class="stat-num">3×</p>
+      <p class="stat-lbl">average engagement increase in 90 days</p>
+    </div>
+    <div class="stat">
+      <p class="stat-num">200%</p>
+      <p class="stat-lbl">average reach increase in first quarter</p>
+    </div>
+    <div class="stat">
+      <p class="stat-num">98%</p>
+      <p class="stat-lbl">client retention after first 3 months</p>
+    </div>
+  </div>
+
+  <p class="note">
+    All prices in USD &nbsp;·&nbsp; Easy reporting &nbsp;·&nbsp; Expedited support<br>
+    Custom enterprise plans available — <a href="mailto:guru@eddelact.com.com">reach out to us</a>
+  </p>
+
+</div>
+</body>
+</html>
