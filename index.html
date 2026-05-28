@@ -10,130 +10,144 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --green-50:  #E1F5EE;
-    --green-100: #9FE1CB;
-    --green-400: #1D9E75;
-    --green-600: #0F6E56;
-    --green-800: #085041;
-    --text-dark: #1a1a1a;
-    --text-mid:  #555;
-    --text-muted:#888;
-    --border:    rgba(0,0,0,0.1);
-    --bg-soft:   #F7F9F8;
-    --white:     #ffffff;
+    --cyan:       #2DD4CC;
+    --cyan-dim:   #1AADA6;
+    --card-bg:    rgba(255,255,255,0.06);
+    --card-hover: rgba(255,255,255,0.10);
+    --border:     rgba(255,255,255,0.12);
+    --border-hi:  rgba(45,212,204,0.55);
+    --text-white: #ffffff;
+    --text-light: rgba(255,255,255,0.75);
+    --text-muted: rgba(255,255,255,0.45);
+    --pill-bg:    rgba(255,255,255,0.08);
   }
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--bg-soft);
-    color: var(--text-dark);
+    /* same deep navy → purple radial as the screenshot */
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%,   #3b3270 0%,  transparent 65%),
+      radial-gradient(ellipse 60% 50% at 0%   50%,  #2a2060 0%,  transparent 60%),
+      radial-gradient(ellipse 60% 50% at 100% 50%,  #1e1a55 0%,  transparent 60%),
+      #141233;
+    color: var(--text-white);
     min-height: 100vh;
     padding: 3rem 1.5rem 4rem;
   }
 
   .page { max-width: 880px; margin: 0 auto; }
 
-  /* Brand strip */
+  /* ── Brand strip ── */
   .brand-strip {
     display: flex; align-items: center; justify-content: center;
-    gap: 8px; margin-bottom: 2.5rem; padding-bottom: 2.5rem;
+    gap: 8px; margin-bottom: 2.5rem; padding-bottom: 2rem;
     border-bottom: 1px solid var(--border);
   }
-  .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green-400); }
-  .brand-name { font-size: 28px; font-weight: 600; color: var(--text-dark); letter-spacing: 0.04em; }
+  .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--cyan); }
+  .brand-name { font-size: 28px; font-weight: 600; color: var(--text-white); letter-spacing: 0.04em; }
 
-  /* Header */
+  /* ── Header ── */
   .header { text-align: center; margin-bottom: 3rem; }
+
   .eyebrow {
-    display: inline-block; font-size: 11px; font-weight: 600;
+    display: inline-block; font-size: 10px; font-weight: 600;
     letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--green-600); background: var(--green-50);
-    padding: 5px 14px; border-radius: 20px; margin-bottom: 1rem;
+    color: var(--text-light);
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.06);
+    padding: 5px 16px; border-radius: 20px; margin-bottom: 1.1rem;
   }
+
   .header h1 {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(26px, 4.5vw, 40px); font-weight: 400;
-    color: var(--text-dark); line-height: 1.15; margin-bottom: 0.75rem;
+    color: var(--text-white); line-height: 1.15; margin-bottom: 0.75rem;
   }
-  .header h1 em { font-style: italic; color: var(--green-400); }
-  .header p { font-size: 15px; color: var(--text-mid); max-width: 480px; margin: 0 auto; line-height: 1.6; }
+  .header h1 em { font-style: italic; color: var(--cyan); }
 
-  /* Grid */
+  .header p { font-size: 15px; color: var(--text-light); max-width: 480px; margin: 0 auto; line-height: 1.6; }
+
+  /* ── Grid ── */
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 2.5rem; }
   @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
 
-  /* Card */
+  /* ── Card ── */
   .card {
-    background: var(--white); border: 1px solid var(--border);
-    border-radius: 16px; padding: 1.75rem 1.4rem 1.4rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.75rem 1.4rem 1.4rem;
     display: flex; flex-direction: column; position: relative;
+    backdrop-filter: blur(12px);
+    transition: background 0.2s, transform 0.15s;
   }
-  .card.featured { border: 2px solid var(--green-400); }
+  .card:hover { background: var(--card-hover); transform: translateY(-3px); }
+  .card.featured { border: 1.5px solid var(--border-hi); }
 
   .badge {
     position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-    background: var(--green-400); color: #fff; font-size: 10px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 4px 14px; border-radius: 20px; white-space: nowrap;
+    background: var(--cyan); color: #0e1a1a;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 4px 14px; border-radius: 20px; white-space: nowrap;
   }
 
-  /* Tier icon */
+  /* ── Tier icon ── */
   .tier-icon {
     width: 48px; height: 48px; border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 1.1rem;
   }
   .tier-icon svg { width: 24px; height: 24px; }
-  .icon-essential { background: var(--green-50); }
-  .icon-elevate   { background: var(--green-50); }
-  .icon-elite     { background: var(--green-400); }
+  .icon-essential { background: rgba(45,212,204,0.12); }
+  .icon-elevate   { background: rgba(45,212,204,0.12); }
+  .icon-elite     { background: var(--cyan); }
 
-  /* Text */
+  /* ── Text ── */
   .tier-number { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px; }
-  .tier-name { font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 400; color: var(--text-dark); margin-bottom: 0.85rem; }
+  .tier-name { font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 400; color: var(--text-white); margin-bottom: 0.85rem; }
 
   .price { display: flex; align-items: baseline; gap: 2px; margin-bottom: 0.25rem; }
-  .price-dollar { font-size: 15px; font-weight: 500; color: var(--text-mid); }
-  .price-amount { font-size: 36px; font-weight: 600; color: var(--text-dark); line-height: 1; }
-  .price-period { font-size: 13px; color: var(--text-muted); margin-left: 1px; }
+  .price-dollar { font-size: 15px; font-weight: 500; color: var(--text-light); }
+  .price-amount { font-size: 36px; font-weight: 600; color: var(--text-white); line-height: 1; }
+  .price-period { font-size: 13px; color: var(--text-muted); margin-left: 2px; }
 
-  .tagline { font-size: 12.5px; color: var(--text-mid); line-height: 1.55; margin-bottom: 1.25rem; min-height: 40px; }
+  .tagline { font-size: 12.5px; color: var(--text-light); line-height: 1.55; margin-bottom: 1.25rem; min-height: 40px; }
   .divider { height: 1px; background: var(--border); margin-bottom: 1rem; }
   .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
 
-  /* Platforms */
+  /* ── Platforms ── */
   .platforms { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1rem; }
-  .pill { font-size: 10px; font-weight: 500; padding: 3px 9px; border-radius: 20px; background: var(--bg-soft); color: var(--text-mid); border: 1px solid var(--border); }
+  .pill { font-size: 10px; font-weight: 500; padding: 3px 9px; border-radius: 20px; background: var(--pill-bg); color: var(--text-light); border: 1px solid var(--border); }
 
-  /* Features */
+  /* ── Features ── */
   .feature-list { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 1.25rem; }
-  .feature-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text-dark); line-height: 1.45; }
+  .feature-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text-light); line-height: 1.45; }
   .chk { flex-shrink: 0; width: 17px; height: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
   .chk svg { width: 9px; height: 9px; }
-  .chk-e  { background: var(--green-50);  }
-  .chk-ev { background: var(--green-50);  }
-  .chk-el { background: var(--green-400); }
+  .chk-e  { background: rgba(45,212,204,0.10); } /* subtle */
+  .chk-ev { background: rgba(45,212,204,0.30); } /* stronger */
+  .chk-el { background: rgba(45,212,204,0.60); } /* premium */
 
-  /* CTA */
+  /* ── CTA ── */
   .cta {
-    display: block; text-align: center; padding: 11px; border-radius: 8px;
-    font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none;
+    display: block; text-align: center; padding: 11px; border-radius: 10px;
+    font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none;
     margin-top: auto; transition: opacity 0.12s, transform 0.1s;
   }
   .cta:hover  { opacity: 0.85; transform: translateY(-1px); }
-  .cta-e  { background: var(--bg-soft); color: var(--text-dark); border: 1px solid var(--border); }
-  .cta-ev { background: var(--green-800); color: var(--green-100); border: none; }
-  .cta-el { background: var(--green-400); color: #fff; border: none; }
+  .cta-e  { background: rgba(255,255,255,0.08); color: var(--text-white); border: 1px solid var(--border); }
+  .cta-ev { background: rgba(45,212,204,0.15); color: var(--cyan); border: 1px solid var(--border-hi); }
+  .cta-el { background: var(--cyan); color: #0e1a1a; border: none; }
 
-  /* Stats */
+  /* ── Stats ── */
   .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.5rem; }
   @media (max-width: 480px) { .stats { grid-template-columns: 1fr; } }
-  .stat { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem; text-align: center; }
-  .stat-num { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--green-400); line-height: 1; margin-bottom: 5px; }
-  .stat-lbl { font-size: 11.5px; color: var(--text-mid); line-height: 1.4; }
+  .stat { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem; text-align: center; backdrop-filter: blur(8px); }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--cyan); line-height: 1; margin-bottom: 5px; }
+  .stat-lbl { font-size: 11.5px; color: var(--text-light); line-height: 1.4; }
 
   .note { text-align: center; font-size: 11px; color: var(--text-muted); line-height: 1.7; }
-  .note a { color: var(--green-600); text-decoration: none; }
+  .note a { color: var(--cyan); text-decoration: none; }
 </style>
 </head>
 <body>
@@ -157,9 +171,9 @@
       <div class="tier-icon icon-essential">
         <!-- Sprout / seedling icon -->
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 22V12" stroke="#0F6E56" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M12 12C12 12 7 11 5 7C5 7 10 4 14 7C16 8.5 16 11 12 12Z" fill="#1D9E75" stroke="#0F6E56" stroke-width="1.4" stroke-linejoin="round"/>
-          <path d="M12 16C12 16 15 15 17 12C17 12 14 10 11 12C10 13 10.5 15 12 16Z" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" stroke-linejoin="round"/>
+          <path d="M12 22V12" stroke="#2DD4CC" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M12 12C12 12 7 11 5 7C5 7 10 4 14 7C16 8.5 16 11 12 12Z" fill="rgba(45,212,204,0.3)" stroke="#2DD4CC" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M12 16C12 16 15 15 17 12C17 12 14 10 11 12C10 13 10.5 15 12 16Z" fill="rgba(45,212,204,0.15)" stroke="#2DD4CC" stroke-width="1.2" stroke-linejoin="round"/>
         </svg>
       </div>
       <p class="tier-number">Package 01</p>
@@ -180,36 +194,36 @@
       <ul class="feature-list">
         <li>
           <span class="chk chk-e">
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#2DD4CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>8 custom posts & stories / month
         </li>
         <li>
           <span class="chk chk-e">
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#2DD4CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>Basic caption copywriting
         </li>
         <li>
           <span class="chk chk-e">
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#2DD4CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>Branded static graphics
         </li>
         <li>
           <span class="chk chk-e">
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#2DD4CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>Hashtag research &amp; strategy
         </li>
         <li>
           <span class="chk chk-e">
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#2DD4CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>Monthly PDF report
         </li>
         <li>
           <span class="chk chk-e">
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#2DD4CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>1 revision rounds
         </li>
       </ul>
-      <a class="cta cta-e" href="mailto:guru@eddelact.com?subject=Essential Package Inquiry">Get started</a>
+      <a class="cta cta-e" href="mailto:guru@eddelact.com.com?subject=Essential Package Inquiry">Get started</a>
     </div>
 
     <!-- ── Elevate ── -->
@@ -218,10 +232,10 @@
       <div class="tier-icon icon-elevate">
         <!-- Trending up / rocket icon -->
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M13 3C13 3 18 3.5 21 6.5C21 6.5 21.5 11.5 19 15L15 11L13 3Z" fill="#1D9E75" stroke="#0F6E56" stroke-width="1.4" stroke-linejoin="round"/>
-          <path d="M9 13L13 17C10.5 19 5.5 20 5.5 20C5.5 20 6 14.5 9 13Z" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.4" stroke-linejoin="round"/>
-          <path d="M15 11L13 17L9 13L15 11Z" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.4" stroke-linejoin="round"/>
-          <circle cx="16" cy="8" r="1.5" fill="#0F6E56"/>
+          <path d="M13 3C13 3 18 3.5 21 6.5C21 6.5 21.5 11.5 19 15L15 11L13 3Z" fill="rgba(45,212,204,0.3)" stroke="#2DD4CC" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M9 13L13 17C10.5 19 5.5 20 5.5 20C5.5 20 6 14.5 9 13Z" fill="rgba(45,212,204,0.15)" stroke="#2DD4CC" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M15 11L13 17L9 13L15 11Z" fill="rgba(45,212,204,0.1)" stroke="#2DD4CC" stroke-width="1.4" stroke-linejoin="round"/>
+          <circle cx="16" cy="8" r="1.5" fill="#2DD4CC"/>
         </svg>
       </div>
       <p class="tier-number">Package 02</p>
@@ -243,31 +257,31 @@
       <ul class="feature-list">
         <li>
           <span class="chk chk-ev">
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#2DD4CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>12 posts & stories + 3 Reels / month
         </li>
         <li>
           <span class="chk chk-ev">
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#2DD4CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>Story sequences (Thrice weekly)
         </li>
         <li>
           <span class="chk chk-ev">
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#2DD4CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>Community management (5h/wk)
         </li>
         <li>
           <span class="chk chk-ev">
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#2DD4CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>Weekly strategy call
         </li>
         <li>
-          <span class="chk chk-e">
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="chk chk-ev">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#2DD4CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>2 revision rounds
         </li>
       </ul>
-      <a class="cta cta-ev" href="mailto:guru@eddelact.com?subject=Elevate Package Inquiry">Get started</a>
+      <a class="cta cta-ev" href="mailto:guru@eddelact.com.com?subject=Elevate Package Inquiry">Get started</a>
     </div>
 
     <!-- ── Elite ── -->
@@ -344,7 +358,7 @@
         </li>
         
       </ul>
-      <a class="cta cta-el" href="mailto:guru@eddelact.com?subject=Elite Package Inquiry">Get started</a>
+      <a class="cta cta-el" href="mailto:guru@eddelact.com.com?subject=Elite Package Inquiry">Get started</a>
     </div>
 
   </div>
@@ -367,7 +381,7 @@
 
   <p class="note">
     All prices in USD &nbsp;·&nbsp; Easy reporting &nbsp;·&nbsp; Expedited support<br>
-    Custom enterprise plans available — <a href="mailto:guru@eddelact.com">reach out to us</a>
+    Custom enterprise plans available — <a href="mailto:guru@eddelact.com.com">reach out to us</a>
   </p>
 
 </div>
